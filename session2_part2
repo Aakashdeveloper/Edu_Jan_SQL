@@ -1,0 +1,21 @@
+ALTER TABLE products add column abc varchar(30);
+
+DESC products;
+ALTER TABLE products drop column abc;
+
+ALTER TABLE products add column abc varchar(30) after id;
+
+SELECT * from products;
+
+DELETE from products where id=7;
+
+INSERT into products (name, price, coffee_origin) VALUES ('MyCoffe',2.50,'India');
+
+DELETE from orders;
+DELETE from products;
+SELECT *  from orders;
+
+DELETE from products where id=1;
+
+ALTER TABLE products auto_increment=5;
+INSERT into products (name, price, coffee_origin) VALUES ('MyCoffe',2.50,'India');

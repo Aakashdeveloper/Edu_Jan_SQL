@@ -1,0 +1,160 @@
+setup => done
+what is database and where to use => done
+sql vs nosql => 
+Structured Data    Unstructured data
+
+rollno | Hindi | English
+1      | 80    | 78
+2      | 90    | 87
+
+
+rollNo | Father | Mother  | Sister | Mother | Grandparents
+1      | yes    |         | yes    |         |
+2      |        | yes     | yes    | yes     |
+
+
+{
+    rollNo:1,
+    father:yes,
+    Sister:yes
+},
+{
+    rollNo:2,
+    Mother:yes,
+    Sister:yes,
+    Mother:yes
+}
+
+
+primary, forgien key =>done
+dml & ddl =>
+normalization => 
+linux setup
+
+primary key > Unique in the table no duplicate
+foreign key> key which help to relate other table in same database
+    A column which is related to primary key in another table
+Not Null > A column cannot contains any null values
+Unique > A column cannot have any duplicate values
+Default > if no value inserted set Default value
+------------------------------------
+
+> GoldenKey => primary key
+> Empty Diamond > Normal column no relation and not even primary key
+> Green Diamond> Not foreign and not Null
+> Red Diamond > Not Null and foreign key
+
+normalization
+
+> Process of efficiently organize data in database
+
+WHY?
+> To Eliminate redundant data.
+> To Only store related data in a table
+
+Benefits:
+> Reduce Storage space
+> Reduce insert,update & delete
+> improve query performance
+
+
+1N
+2N
+3N
+
+/////1NF////
+Student | Year | Class
+Paul    | 11   | Math
+Peggy   | 10   | History
+Paul    | 11   | Math
+Brain   | 8    | English, Chemistry
+Linda   | 7    | Math, History, Biology
+
+What is 1 NF
+> no repeated rows of data
+> column only contains single value
+> table has a primary key
+
+What is 2 Nf
+> they conform to 1NF
+> every column  that is not a primary key of the table is
+dependent on the whole of the primary key
+
+
+What is 3nF
+
+> they conforn to 2nf
+> Every column that is not a primary key  is only
+  dependent on the whole of the primary key
+
+/////1NF////
+Student | Year | Class
+Paul    | 11   | Math
+Peggy   | 10   | History
+Paul    | 11   | Math
+Brain   | 8    | English, Chemistry
+Linda   | 7    | Math, History, Biology
+
+ id| Student | Year | Class
+ 1 | Paul    | 11   | Math
+ 2 | Peggy   | 10   | History
+ 3 | Brain   | 8    | English
+ 4 | Brain   | 8    | Chemistry
+ 5 | Linda   | 7    | Math
+ 6 | Linda   | 7    | History
+ 7 | Linda   | 7    | Biology
+
+ 
+
+//2NF////
+
+Student | Subject | GRADE | AGE
+Natasha | React   | A     | 15
+Natasha | Angular | B     | 15
+Daniel  | Node    | C     | 16
+Simon   | React   | A     | 14
+Emma    | SQL     | B     | 14
+
+Student | AGE  | Name
+1       | 15   | Natasha
+2       | 16   | Daniel
+3       | 14   | Simon
+4       | 14   | Emma
+
+
+id      | Subject  
+1       | React
+2       | Angular  
+3       | Node   
+4       | Sql   
+
+
+id| Student_id | Subject | GRADE
+1 | 1     | 1   | A    
+2 | 1     | 2   | B     
+3 | 2     | 3   | C     
+4 | 3     | 1   | A     
+5 | 4     | 4   | B     
+
+
+//3NF////
+Subject | YEAR | Star PUPIL | Star PUPIL date 
+MATH    | 2015 | Mathew     | 1999-03-21
+Eng     | 2015 | William    | 1999-03-21
+Hind    | 2015 | Georgina   | 1999-03-21
+MATH    | 2016 | Brain      | 1999-03-21
+Phys    | 2017 | William    | 1999-03-21
+
+Subject | YEAR | Star PUPIL 
+MATH    | 2015 | Mathew    
+Eng     | 2015 | William   
+Hind    | 2015 | Georgina    
+MATH    | 2016 | Brain    
+Phys    | 2017 | William    
+
+Star PUPIL | Star PUPIL date 
+Mathew     | 1999-03-21
+William     | 1999-03-21
+Georgina     | 1999-03-21
+Brain     | 1999-03-21
+William     | 1999-03-21

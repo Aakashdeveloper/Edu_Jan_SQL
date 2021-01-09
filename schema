@@ -1,0 +1,20 @@
+City
+{
+    id Int() PK
+    name varchar
+}
+
+hotel
+{
+  id Int() PK
+  name
+  city_id FK
+  triptype_id FK
+}
+
+triptype
+{
+ id PK
+ name varchar
+}
+
