@@ -1,0 +1,82 @@
+SELECT * FROM products where coffee_origin="BRAZIL";
+SELECT distinct coffee_origin from products;
+SELECT name,price ,coffee_origin AS country from products;
+SELECT * from products;
+
+DELETE FROM products;
+
+INSERT into products (name,price,coffee_origin) VALUES ('EXPRESSO',2.50,'BRAZIL');
+
+TRUNCATE TABLE products;
+
+
+SELECT * FROM orders;
+
+SELECT distinct customer_id from orders where 
+order_time between '2016-01-01' AND '2016-01-03';
+
+SELECT customer_id from orders where product_id=4;
+
+select name, price from products order by name asc;
+select name, price from products order by name desc;
+
+SELECT COUNT(customer_id) from orders;
+
+SELECT COUNT(customer_id),product_id
+from orders
+group by product_id
+order by count(customer_id) desc;
+
+
+SELECT COUNT(customer_id),product_id
+from orders
+group by product_id
+having count(customer_id)>20
+order by count(customer_id) desc;
+
+
+SELECT * from products;
+
+SELECT * from products 
+where price>=3 and coffee_origin="BRAZIL";
+
+SELECT * from products 
+where price>=3 or coffee_origin="BRAZIL";
+
+SELECT * from products
+where NOT coffee_origin='Brazil' AND NOT coffee_origin='Finland' ;
+
+SELECT * from products
+where coffee_origin='Brazil' AND (price=2.50 or price=3);
+
+SELECT * from orders
+where product_id is null;
+
+INSERT into orders(product_id,customer_id,order_time) VALUES 
+(null,2,'2021-01-10 09-02-11');
+
+SELECT * from orders
+where product_id is not null;
+
+SELECT * from products
+where coffee_origin NOT IN ('India','Brazil','Finland');
+
+select * from customers;
+
+SELECT * from customers 
+where first_name like '%a%';
+
+SELECT * from customers 
+where first_name like '___a%';
+
+SELECT * from customers 
+where first_name like '__a%e';
+
+
+INSERT INTO customers (first_name, last_name, gender, phone_number) VALUES ('Eva','Martin','F','01123147789')
+
+22:25:51	RENAME TABLE Female_Customers to Male_customers	Error Code: 1146. Table 'coffee_store.Female_Customers' doesn't exist	0.0096 sec
+
+
+
+22:32:38	SELECT * from customers INTO outfile '/mycustomer.txt'	Error Code: 1290. The MySQL server is running with the --secure-file-priv option so it cannot execute this statement	0.014 sec

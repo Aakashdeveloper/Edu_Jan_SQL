@@ -18,4 +18,7 @@ SELECT *  from orders;
 DELETE from products where id=1;
 
 ALTER TABLE products auto_increment=5;
+
 INSERT into products (name, price, coffee_origin) VALUES ('MyCoffe',2.50,'India');
+
+20:53:48	TRUNCATE TABLE products	Error Code: 1701. Cannot truncate a table referenced in a foreign key constraint (`coffee_store`.`orders`, CONSTRAINT `orders_ibfk_1`)	0.0074 sec

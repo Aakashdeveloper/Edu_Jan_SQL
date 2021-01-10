@@ -1,0 +1,63 @@
+create database users;
+
+use users;
+
+CREATE TABLE addresses(
+    id int,
+    house_number int,
+    city varchar(30),
+    postcode varchar(7)
+)
+
+CREATE TABLE people(
+    id int,
+    first_name varchar(30),
+    last_name varchar(20),
+    address_id int
+)
+
+CREATE Tables pets(
+    id int,
+    name varchar(20),
+    species varchar(30),
+    owner_id int
+)
+
+///////
+ADD/ REMOVE PRIMARY KEY
+////////
+
+ALTER TABLE addresses add primary key (id);
+ALTER TABLE addresses Drop primary key;
+
+///////
+ADD/ REMOVE FOREGIN KEY
+////////
+ALTER TABLE people
+ADD constraint FK_peopleaddress
+FOREIGN KEY (address_id) REFERENCES addresses(id)
+
+ALTER TABLE people
+DROP FOREIGN KEY FK_peopleaddress
+
+22:52:18	ALTER TABLE people DROP  FOREIGN KEY FK_peopleaddress	Error Code: 1091. Can't DROP 'FK_peopleaddress'; check that column/key exists	0.0052 sec
+
+ALTER TABLE addresses add primary key (id);
+
+DESC addresses;
+
+ALTER TABLE addresses Drop primary key;
+
+ALTER TABLE people
+ADD constraint FK_peopleaddress
+FOREIGN KEY (address_id) REFERENCES addresses(id);
+
+ALTER TABLE people
+DROP  FOREIGN KEY FK_peopleaddress;
+DESC people;
+
+SELECT * from pets;
+DESC pets;
+ALTER table pets add constraint my_species unique (species);
+
+ALTER table pets change `species` `breed` varchar(20);
