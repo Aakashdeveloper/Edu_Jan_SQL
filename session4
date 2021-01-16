@@ -1,0 +1,121 @@
+///////
+Index
+//////////
+
+Create index my_product ON orders(Product_id);
+Show Index from orders;
+
+ALTER TABLE table_name DROP INdex my_product
+
+Create index my_product ON orders(Product_id,Order_id);
+
+//////////////////////////
+Create Database ticket_booking;
+use ticket_booking;
+
+CREATE TABLE customers(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(45) NOT NULL,
+    last_name VARCHAR(45),
+    email varchar(45) not null unique
+);
+
+CREATE TABLE rooms(
+    id INT PRIMARY KEY auto_increment,
+    name VARCHAR(45) NOT NULL,
+    no_seats INT NOT NULL
+);
+
+CREATE TABLE films(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(45) NOT NULL UNIQUE,
+    length_min INT NOT NULL
+);
+
+CREATE TABLE screenings(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    film_id INT NOT NULL,
+    room_id INT NOT NULL,
+    start_time DATETIME NOT NULL,
+    FOREIGN KEY (film_id) REFERENCES films(id),
+    FOREIGN KEY (room_id) REFERENCES rooms(id)
+);
+
+CREATE TABLE seats(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    rown CHAR(1) NOT NULL,
+    number INT NOT NULL,
+    room_id INT NOT NULL,
+    FOREIGN KEY (room_id) REFERENCES rooms(id)
+);
+
+CREATE TABLE bookings(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    screening_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    FOREIGN KEY (screening_id) REFERENCES screenings(id),
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+CREATE TABLE reserved_seat(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT NOT NULL,
+    seat_id INT NOT NULL,
+    FOREIGN KEY (booking_id) REFERENCES bookings(id),
+    FOREIGN KEY (seat_id) REFERENCES seats(id)
+);
+
+//Joins//
+Inner Joins > Will retrieve data only when there is matching value in both the tables
+Left Joins  > Will Retrieve data from the left table(table1) and matching row from the right table(table2)
+Right Join  > Will Retrieve data from the right table(table1) and matching row from the left table(table2)
+
+
+
+SELECT rooms.name, seats.rown,seats,number from rooms INNER JOIN seats
+on rooms.id = seats.room_id
+
+
+SELECT rooms.name, seats.rown,seats,number from rooms LEFT JOIN seats
+on rooms.id = seats.room_id
+
+SELECT c.first_name,c.email,b.customer_id from customers c
+LEFT JOIN bookings b
+on c.id = b.customer_id
+
+c.customer name
+c.email
+b.customer_id
+b.screening_id
+
+film_id
+roomid 
+start_time
+film name
+room name
+
+select c.first_name,c.email,b.customer_id,b.screening_id,s.film_id,s.room_id,s.start_time,f.name,r.name FROM customers c JOIN bookings b 
+on c.id=b.customer_id
+JOIN screenings s
+on s.id = b.screening_id
+JOIN films f
+on f.id = s.film_id 
+JOIN rooms r
+on r.id = s.room_id
+
+select c.first_name,c.email,b.customer_id,f.name as film_name, r.name as room_name, s.start_time,se.rown as rownumber, se.number as seatnumber
+FROM customers c JOIN bookings b 
+on c.id = b.customer_id
+JOIN screenings s
+on s.id = b.screening_id
+JOIN films f
+on f.id = s.film_id
+JOIN rooms r
+on r.id = s.room_id
+JOIN reserved_seat rs
+on rs.booking_id = b.id 
+JOIN seats se
+on se.id = rs.seat_id
+
+tiggers
+SP
