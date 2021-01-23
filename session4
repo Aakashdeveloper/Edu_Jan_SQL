@@ -118,4 +118,4 @@ JOIN seats se
 on se.id = rs.seat_id
 
 tiggers
-SP
+SP 
